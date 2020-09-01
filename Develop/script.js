@@ -1,6 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector('#generate');
 var passwordText = document.querySelector('#password');
+var copyBtn = document.querySelector('#copy');
 var lowercase = false;
 var uppercase = false;
 var number = false;
@@ -8,6 +9,7 @@ var special = false;
 var length = 0;
 var password = '';
 
+// Function to create and display password when button is clicked
 function writePassword() {
     questions();
 
@@ -16,7 +18,16 @@ function writePassword() {
     passwordText.value = password;
 }
 
-// Start by gathering all of the information you need (length and types of characters)
+function copyPassword() {
+    var copyText = document.getElementById('password');
+    copyText.select();
+    document.execCommand('copy');
+    alert('Copied the text: ' + copyText.value);
+}
+
+// Internal functions that power writePassword()
+
+// Questions to determine what password criteria to use
 function questions() {
     // Prompt for length of password (8-128)
     length = +prompt(
@@ -51,7 +62,7 @@ function getRandomLower() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
 
-// Function to get lowercase letters
+// Function to get uppercase letters
 function getRandomUpper() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
@@ -85,10 +96,14 @@ function passGen(lowercase, uppercase, number, special) {
     return passwordArr[Math.floor(Math.random() * passwordArr.length)];
 }
 
+// Loop the character generation over the length of the password
 function generatePassword() {
     for (i = 0; i < length; i++) {
         password += passGen(lowercase, uppercase, number, special);
     }
 }
+
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+// Add event listener to copy button
+copyBtn.addEventListener('click', copyPassword);
