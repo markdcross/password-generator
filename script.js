@@ -2,23 +2,22 @@
 var generateBtn = document.querySelector('#generate');
 var passwordText = document.querySelector('#password');
 var copyBtn = document.querySelector('#copy');
-var lowercase = false;
-var uppercase = false;
-var number = false;
-var special = false;
-var length = 0;
 var password = '';
 
-// Event listener to generate password on click
-generateBtn.addEventListener('click', writePassword);
-
-// Creates and displays password when button is clicked
+// Function to create and display password when button is clicked
 function writePassword() {
     questions();
 
     generatePassword();
 
     passwordText.value = password;
+}
+
+function copyPassword() {
+    var copyText = document.getElementById('password');
+    copyText.select();
+    document.execCommand('copy');
+    alert('Copied the text: ' + copyText.value);
 }
 
 // Internal functions that power writePassword()
@@ -52,23 +51,23 @@ function questions() {
     }
 }
 
-// Generates random characters for each type selected by user
-// Gets lowercase letters
+// Functions to generate random characters for each type selected by user
+// Function to get lowercase letters
 function getRandomLower() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
 
-// Gets uppercase letters
+// Function to get uppercase letters
 function getRandomUpper() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
 
-// Gets numbers
+// Function to get numbers
 function getRandomNumber() {
     return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 }
 
-// Gets special characters
+// Function to get special characters
 function getRandomSpecial() {
     const specialChar = '!@#$%^&*()_+';
     return specialChar[Math.floor(Math.random() * specialChar.length)];
@@ -99,13 +98,7 @@ function generatePassword() {
     }
 }
 
-// Event listener to copy password on click
+// Add event listener to generate button
+generateBtn.addEventListener('click', writePassword);
+// Add event listener to copy button
 copyBtn.addEventListener('click', copyPassword);
-
-// Copies password
-function copyPassword() {
-    var copyText = document.getElementById('password');
-    copyText.select();
-    document.execCommand('copy');
-    alert('Copied the text: ' + copyText.value);
-}
