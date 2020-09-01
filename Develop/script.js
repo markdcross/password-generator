@@ -9,20 +9,16 @@ var special = false;
 var length = 0;
 var password = '';
 
-// Function to create and display password when button is clicked
+// Event listener to generate password on click
+generateBtn.addEventListener('click', writePassword);
+
+// Creates and displays password when button is clicked
 function writePassword() {
     questions();
 
     generatePassword();
 
     passwordText.value = password;
-}
-
-function copyPassword() {
-    var copyText = document.getElementById('password');
-    copyText.select();
-    document.execCommand('copy');
-    alert('Copied the text: ' + copyText.value);
 }
 
 // Internal functions that power writePassword()
@@ -56,23 +52,23 @@ function questions() {
     }
 }
 
-// Functions to generate random characters for each type selected by user
-// Function to get lowercase letters
+// Generates random characters for each type selected by user
+// Gets lowercase letters
 function getRandomLower() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
 
-// Function to get uppercase letters
+// Gets uppercase letters
 function getRandomUpper() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
 
-// Function to get numbers
+// Gets numbers
 function getRandomNumber() {
     return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 }
 
-// Function to get special characters
+// Gets special characters
 function getRandomSpecial() {
     const specialChar = '!@#$%^&*()_+';
     return specialChar[Math.floor(Math.random() * specialChar.length)];
@@ -103,7 +99,13 @@ function generatePassword() {
     }
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
-// Add event listener to copy button
+// Event listener to copy password on click
 copyBtn.addEventListener('click', copyPassword);
+
+// Copies password
+function copyPassword() {
+    var copyText = document.getElementById('password');
+    copyText.select();
+    document.execCommand('copy');
+    alert('Copied the text: ' + copyText.value);
+}
