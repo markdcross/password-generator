@@ -20,7 +20,6 @@ function lengthFunc() {
         return writePassword();
     }
     return length;
-    console.log(length);
 }
 
 function questions(length) {
@@ -35,12 +34,13 @@ function questions(length) {
     var special = confirm(
         'Do you want special characters (OK for yes, Cancel for no)?'
     );
+
     // Validation alert and restart questions
     if (!lowercase && !uppercase && !number && !special) {
         alert('You muse select at least one criteria');
         return writePassword();
     }
-    console.log(length);
+
     // Uses the information collected above to generate a random password based on the selected criteria
     generatePassword(lowercase, uppercase, number, special, length);
 }
