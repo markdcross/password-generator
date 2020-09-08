@@ -6,19 +6,21 @@ var copyBtn = document.querySelector('#copy');
 // Questions are asked via a prompt and several confirms to determine what password criteria to use
 function lengthFunc() {
     // Prompt for length of password (8-128)
-    var length = prompt(
+    var length = 0;
+    length = prompt(
         'How long would you like your Password to be (must be between 8-128)?'
     );
 
-    // Validation alert
+    // Validation
     if (length == null) {
         return;
     }
     if (length < 8 || length > 128) {
         alert('Password length must be between 8-128 characters');
-        lengthFunc();
+        return writePassword();
     }
     return length;
+    console.log(length);
 }
 
 function questions(length) {
@@ -36,8 +38,9 @@ function questions(length) {
     // Validation alert and restart questions
     if (!lowercase && !uppercase && !number && !special) {
         alert('You muse select at least one criteria');
-        return questions();
+        return writePassword();
     }
+    console.log(length);
     // Uses the information collected above to generate a random password based on the selected criteria
     generatePassword(lowercase, uppercase, number, special, length);
 }
