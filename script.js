@@ -2,21 +2,21 @@
 var generateBtn = document.querySelector('#generate');
 var passwordText = document.querySelector('#password');
 var copyBtn = document.querySelector('#copy');
-var password = '';
 
 // Questions are asked via a prompt and several confirms to determine what password criteria to use
-function questions() {
+function lengthFunc() {
     // Prompt for length of password (8-128)
     length = +prompt(
         'How long would you like your Password to be (must be between 8-128)?'
     );
-    // Validation
+    // Validation alert
     if (length < 8 || length > 128) {
         alert('Password length must be between 8-128 characters');
-        questions();
     }
+}
 
-    // Confirms for types (lowercase, uppercase, numeric, special)
+function questions() {
+    // Confirms for types of characters to be used(lowercase, uppercase, numeric, special)
     lowercase = confirm(
         'Do you want lowercase letters (OK for yes, Cancel for no)?'
     );
@@ -27,7 +27,7 @@ function questions() {
     special = confirm(
         'Do you want special characters (OK for yes, Cancel for no)?'
     );
-    // Validation
+    // Validation alert and restart questions
     if (
         lowercase === false &&
         uppercase === false &&
@@ -39,20 +39,20 @@ function questions() {
     }
 }
 
-// Generates random characters for each type selected by user
-// Gets lowercase letters
+// Generates random characters for each character type selected by user
+// Generates lowercase letters
 function getRandomLower() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
-// Gets uppercase letters
+// Generates uppercase letters
 function getRandomUpper() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
-// Gets numbers
+// Generates numbers
 function getRandomNumber() {
     return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 }
-// Gets special characters
+// Generates special characters
 function getRandomSpecial() {
     const specialChar = '!@#$%^&*()_+';
     return specialChar[Math.floor(Math.random() * specialChar.length)];
@@ -86,6 +86,14 @@ function generatePassword() {
 // Calls functions to create and display password when button is clicked
 function writePassword() {
     password = '';
+    // Asks users for length of password
+    lengthFunc();
+
+    // If length criteria not met, exit password creation process
+    if (length < 8 || length > 128) {
+        return;
+    }
+
     // Asks users the criteria questions and records answers
     questions();
 
