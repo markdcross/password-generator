@@ -2,6 +2,8 @@
 
 Homework assignment to produce a random password generator using basic JavaScript (functions and loops).
 
+![Screenshot] (assets\Screenshot 2020-09-12 090153.png)
+
 # Requirements
 
 The password is based on user-selected criteria, specifically length and character types to be included. The app runs in the browser and dynamically updates the HTML and CSS via JavaScript.
