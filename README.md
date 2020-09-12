@@ -2,8 +2,6 @@
 
 Homework assignment to produce a random password generator using basic JavaScript (functions and loops).
 
-![Screenshot](.assets/Screenshot 2020-09-12 090153.png?raw=true "screenshot")
-![Screenshot](markdcross.github.com/password-generator/assets/Screenshot 2020-09-12 090153.png)
 ![Screenshot](https://github.com/markdcross/password-generator/blob/master/assets/Screenshot%202020-09-12%20090153.png)
 
 # Requirements
